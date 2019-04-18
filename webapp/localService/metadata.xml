@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:Reference
+		Uri="https://webidecp-p1941908196trial.dispatcher.hanatrial.ondemand.com/destinations/SH3/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='SH3')/$value"
+		xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema Namespace="ZLK_MARA_ODATA_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="ZLK_UOM_F4_helpType" sap:label="F4 Help on value request" sap:content-version="1">
+				<Key><PropertyRef Name="msehi"/></Key><Property Name="msehi" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Int. meas. unit" sap:quickinfo="Unit of Measurement"
+					sap:semantics="unit-of-measure"/><Property Name="msehl" Type="Edm.String" MaxLength="30" sap:label="Unit text"
+					sap:quickinfo="Unit of Measurement Text (Maximum 30 Characters)"/></EntityType>
+			<EntityType Name="Zlk_maraType" sap:label="Material Overview Report" sap:content-version="1">
+				<Key><PropertyRef Name="MaterialNo"/></Key><Property Name="MaterialNo" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:label="Material"
+					sap:quickinfo="Material Number"/><Property Name="Materialdes" Type="Edm.String" MaxLength="40" sap:label="Material description"/><Property Name="CreatedOn" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Created On"/><Property Name="Nameofperson" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Changed by"
+					sap:quickinfo="Name of person who changed object"/><Property Name="MaterialType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Material type"
+					sap:value-list="standard"/><Property Name="IndustrySector" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Industry Sector"/><Property Name="BaseUnitofMeasure" Type="Edm.String" MaxLength="3" sap:label="Base Unit of Measure" sap:value-list="standard"
+					sap:semantics="unit-of-measure"/><Property Name="Status" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Compl. maint. status"
+					sap:quickinfo="Maintenance status of complete material"/><NavigationProperty Name="to_Mattypevaluehelp" Relationship="ZLK_MARA_ODATA_SRV.assoc_416E4E0DF5397948536899B795888C0F"
+					FromRole="FromRole_assoc_416E4E0DF5397948536899B795888C0F" ToRole="ToRole_assoc_416E4E0DF5397948536899B795888C0F"/><NavigationProperty Name="to_UOMhelp" Relationship="ZLK_MARA_ODATA_SRV.assoc_BCD15597BC69BC9D458C98CF176CD4D7"
+					FromRole="FromRole_assoc_BCD15597BC69BC9D458C98CF176CD4D7" ToRole="ToRole_assoc_BCD15597BC69BC9D458C98CF176CD4D7"/><NavigationProperty Name="to_vbap" Relationship="ZLK_MARA_ODATA_SRV.assoc_0AC7BBA6A47BE67218BBD6F478C46261"
+					FromRole="FromRole_assoc_0AC7BBA6A47BE67218BBD6F478C46261" ToRole="ToRole_assoc_0AC7BBA6A47BE67218BBD6F478C46261"/></EntityType>
+			<EntityType Name="zlk_cds_vbapType" sap:label="sales order data for material" sap:content-version="1">
+				<Key><PropertyRef Name="vbeln"/><PropertyRef Name="posnr"/><PropertyRef Name="matnr"/></Key><Property Name="vbeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Sales document"
+					sap:quickinfo="Sales Document"/><Property Name="posnr" Type="Edm.String" Nullable="false" MaxLength="6" sap:display-format="NonNegative" sap:label="Sales Document Item"/><Property Name="matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:label="Material"
+					sap:quickinfo="Material Number"/><Property Name="matkl" Type="Edm.String" MaxLength="9" sap:display-format="UpperCase" sap:label="Material Group"/><Property Name="netpr" Type="Edm.Decimal" Precision="12" Scale="3" sap:unit="waerk" sap:label="Net Price"/><Property Name="waerk" Type="Edm.String" MaxLength="5" sap:label="Document Currency" sap:quickinfo="SD Document Currency"
+					sap:semantics="currency-code"/><Property Name="kwmeng" Type="Edm.Decimal" Precision="15" Scale="3" sap:label="Order Quantity"
+					sap:quickinfo="Cumulative order quantity in sales units"/><Property Name="wavwr" Type="Edm.Decimal" Precision="14" Scale="3" sap:unit="waerk" sap:label="Cost"
+					sap:quickinfo="Cost in document currency"/><Property Name="paobjnr" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Profitab. Segmt No."
+					sap:quickinfo="Profitability Segment Number (CO-PA)"/></EntityType>
+			<EntityType Name="zlk_mat_type_f4Type" sap:label="Material type" sap:content-version="1">
+				<Key><PropertyRef Name="Material_type"/></Key><Property Name="Material_type" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Material type"/><Property Name="mtbez" Type="Edm.String" MaxLength="25" sap:label="Material type descr." sap:quickinfo="Description of material type"/></EntityType>
+			<Association Name="assoc_BCD15597BC69BC9D458C98CF176CD4D7" sap:content-version="1"><End Type="ZLK_MARA_ODATA_SRV.Zlk_maraType" Multiplicity="1" Role="FromRole_assoc_BCD15597BC69BC9D458C98CF176CD4D7"/><End Type="ZLK_MARA_ODATA_SRV.ZLK_UOM_F4_helpType" Multiplicity="0..1" Role="ToRole_assoc_BCD15597BC69BC9D458C98CF176CD4D7"/></Association>
+			<Association Name="assoc_0AC7BBA6A47BE67218BBD6F478C46261" sap:content-version="1"><End Type="ZLK_MARA_ODATA_SRV.Zlk_maraType" Multiplicity="1" Role="FromRole_assoc_0AC7BBA6A47BE67218BBD6F478C46261"/><End Type="ZLK_MARA_ODATA_SRV.zlk_cds_vbapType" Multiplicity="*" Role="ToRole_assoc_0AC7BBA6A47BE67218BBD6F478C46261"/></Association>
+			<Association Name="assoc_416E4E0DF5397948536899B795888C0F" sap:content-version="1"><End Type="ZLK_MARA_ODATA_SRV.Zlk_maraType" Multiplicity="1" Role="FromRole_assoc_416E4E0DF5397948536899B795888C0F"/><End Type="ZLK_MARA_ODATA_SRV.zlk_mat_type_f4Type" Multiplicity="0..1" Role="ToRole_assoc_416E4E0DF5397948536899B795888C0F"/></Association>
+			<EntityContainer Name="ZLK_MARA_ODATA_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="ZLK_UOM_F4_help" EntityType="ZLK_MARA_ODATA_SRV.ZLK_UOM_F4_helpType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="Zlk_mara" EntityType="ZLK_MARA_ODATA_SRV.Zlk_maraType" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:searchable="true" sap:content-version="1"/><EntitySet Name="zlk_cds_vbap" EntityType="ZLK_MARA_ODATA_SRV.zlk_cds_vbapType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="zlk_mat_type_f4" EntityType="ZLK_MARA_ODATA_SRV.zlk_mat_type_f4Type" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<AssociationSet Name="assoc_BCD15597BC69BC9D458C98CF176CD4D7" Association="ZLK_MARA_ODATA_SRV.assoc_BCD15597BC69BC9D458C98CF176CD4D7"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="Zlk_mara" Role="FromRole_assoc_BCD15597BC69BC9D458C98CF176CD4D7"/><End EntitySet="ZLK_UOM_F4_help" Role="ToRole_assoc_BCD15597BC69BC9D458C98CF176CD4D7"/></AssociationSet>
+				<AssociationSet Name="assoc_416E4E0DF5397948536899B795888C0F" Association="ZLK_MARA_ODATA_SRV.assoc_416E4E0DF5397948536899B795888C0F"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="Zlk_mara" Role="FromRole_assoc_416E4E0DF5397948536899B795888C0F"/><End EntitySet="zlk_mat_type_f4" Role="ToRole_assoc_416E4E0DF5397948536899B795888C0F"/></AssociationSet>
+				<AssociationSet Name="assoc_0AC7BBA6A47BE67218BBD6F478C46261" Association="ZLK_MARA_ODATA_SRV.assoc_0AC7BBA6A47BE67218BBD6F478C46261"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="Zlk_mara" Role="FromRole_assoc_0AC7BBA6A47BE67218BBD6F478C46261"/><End EntitySet="zlk_cds_vbap" Role="ToRole_assoc_0AC7BBA6A47BE67218BBD6F478C46261"/></AssociationSet>
+			</EntityContainer>
+			<Annotations Target="ZLK_MARA_ODATA_SRV.Zlk_maraType/MaterialType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Material type"/><PropertyValue Property="CollectionPath" String="zlk_mat_type_f4"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="MaterialType"/><PropertyValue Property="ValueListProperty" String="Material_type"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="mtbez"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZLK_MARA_ODATA_SRV.Zlk_maraType/BaseUnitofMeasure" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="F4 Help on value request"/><PropertyValue Property="CollectionPath" String="ZLK_UOM_F4_help"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="BaseUnitofMeasure"/><PropertyValue Property="ValueListProperty" String="msehi"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="msehl"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations><atom:link rel="self"
+				href="https://webidecp-p1941908196trial.dispatcher.hanatrial.ondemand.com/destinations/SH3/sap/opu/odata/sap/ZLK_MARA_ODATA_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/><atom:link rel="latest-version"
+				href="https://webidecp-p1941908196trial.dispatcher.hanatrial.ondemand.com/destinations/SH3/sap/opu/odata/sap/ZLK_MARA_ODATA_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
